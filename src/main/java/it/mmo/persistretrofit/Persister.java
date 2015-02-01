@@ -33,6 +33,12 @@ public class Persister {
     private ArrayList<File> directories = new ArrayList<File>();
 
     private PersisterHelper helper;
+    public void Initialize(Context context) throws IOException, ClassNotFoundException {
+        String namespace = "";
+        String dbName = "";
+        Initialize(context, namespace, dbName);
+    }
+
     public void Initialize(Context context, String namespace, String dbName) throws IOException, ClassNotFoundException {
         if (!this.initialized) {
             this.context = context;
@@ -94,5 +100,8 @@ public class Persister {
         for (ContentValues cv: contentValues){
             helper.getWritableDatabase().insert(tablename, null, cv);
         }
+    }
+
+    public void sync() {
     }
 }
